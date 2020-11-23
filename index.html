@@ -17,8 +17,11 @@
                     <img src="img/logo.png" alt="logo" />
                 </div>
             </header>
+            <select class="genre-control" v-model="selected" @change="changeGenre">
+                <option v-for="song in songs" :value="song.genre">{{song.genre}}</option>
+            </select>
             <div class="cds-container container">
-                <div class="cd" v-for="song in songs">
+                <div class="cd" v-for="song in songs" v-if="song.genre == selected">
                     <img :src="song.poster" :alt="song.title">
                     <h3>{{ song.title }}</h3>
                     <span class="author">{{ song.author }}</span>
