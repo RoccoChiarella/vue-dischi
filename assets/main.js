@@ -5,18 +5,17 @@ var app = new Vue(
         el: '#root',
         data: {
             selected: '',
-            songs: []
-        },
-        methods: {
-            changeGenre: function() {
-
-            }
+            songs: [],
+            filteredGenre: []
         },
         mounted() {
-            axios
-                .get('https://flynn.boolean.careers/exercises/api/array/music')
-                .then((response) => {
-                    this.songs = response.data.response;
+            axios.get('https://flynn.boolean.careers/exercises/api/array/music').then((response) => {
+                this.songs = response.data.response;
+                this.songs.forEach((song) => {
+                    if (!this.filteredGenre.includes(song.genre)) {
+                        this.filteredGenre.push(song.genre);
+                    }
+                });
             });
         }
     }

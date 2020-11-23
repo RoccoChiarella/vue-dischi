@@ -14,20 +14,27 @@
         <div id="root">
             <header>
                 <div class="container">
-                    <img src="img/logo.png" alt="logo" />
+                    <img src="img/logo.png" alt="logo"/>
                 </div>
             </header>
-            <select class="genre-control" v-model="selected" @change="changeGenre">
-                <option v-for="song in songs" :value="song.genre">{{song.genre}}</option>
+            <select class="genre-control" v-model="selected">
+                <option v-for="genre in filteredGenre" :value="genre">{{genre}}</option>
             </select>
             <div class="cds-container container">
-                <div class="cd" v-for="song in songs" v-if="song.genre == selected">
+                <div class="cd all" v-for="song in songs" v-if="selected == ''">
                     <img :src="song.poster" :alt="song.title">
-                    <h3>{{ song.title }}</h3>
-                    <span class="author">{{ song.author }}</span>
-                    <span class="year">{{ song.year }}</span>
+                    <h3>{{song.title}}</h3>
+                    <span class="author">{{song.author}}</span>
+                    <span class="year">{{song.year}}</span>
+                </div>
+                <div class="cd sort" v-for="song in songs" v-else-if="selected == song.genre">
+                    <img :src="song.poster" :alt="song.title">
+                    <h3>{{song.title}}</h3>
+                    <span class="author">{{song.author}}</span>
+                    <span class="year">{{song.year}}</span>
                 </div>
             </div>
+
         </div>
         <script src="assets/main.js" charset="utf-8"></script>
     </body>
