@@ -16,6 +16,13 @@ var app = new Vue(
                         this.filteredGenre.push(song.genre);
                     }
                 });
+                this.songs.sort((a, b) => {
+                    if (a.year > b.year) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                })
             });
         }
     }
